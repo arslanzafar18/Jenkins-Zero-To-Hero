@@ -1,4 +1,27 @@
 pipeline {
+    agent any
+
+    options {
+        disableConcurrentBuilds()
+    }
+
+    stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        // ... your other stages (Build, Test, SonarQube, Deploy etc.)
+    }
+}
+
+pipeline {
   agent {
     docker {
       image 'arslanzafar18/maven-abhishek-docker-agent:v1'
