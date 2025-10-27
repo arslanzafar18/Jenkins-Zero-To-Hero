@@ -1,28 +1,4 @@
-pipeline {
-    agent any
-    options { disableConcurrentBuilds() }
 
-    agent {
-        node {
-            label ''
-        }
-    }
-
-    stages {
-        stage('Pre-clean') {
-            steps {
-                deleteDir()  // cleans before checkout
-            }
-        }
-
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-        // your other stages...
-    }
-}
 
 
 pipeline {
