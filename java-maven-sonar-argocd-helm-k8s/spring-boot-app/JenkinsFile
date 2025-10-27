@@ -1,14 +1,17 @@
 pipeline {
     agent any
+    options { disableConcurrentBuilds() }
 
-    options {
-        disableConcurrentBuilds()
+    agent {
+        node {
+            label ''
+        }
     }
 
     stages {
-        stage('Clean Workspace') {
+        stage('Pre-clean') {
             steps {
-                cleanWs()
+                deleteDir()  // cleans before checkout
             }
         }
 
@@ -17,9 +20,10 @@ pipeline {
                 checkout scm
             }
         }
-        // ... your other stages (Build, Test, SonarQube, Deploy etc.)
+        // your other stages...
     }
 }
+
 
 pipeline {
   agent {
