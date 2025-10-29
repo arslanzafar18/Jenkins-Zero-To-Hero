@@ -52,7 +52,7 @@ pipeline {
   steps {
     withEnv(["PATH+EXTRA=/usr/bin"]) {
       dir('workspace/java-maven-sonar-argocd-helm-k8s') {  // ✅ Correct path where .git exists
-        withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
+        withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
           sh '''
             git config user.email "abhishek.xyz@gmail.com"
             git config user.name "Jenkins CI"
