@@ -35,7 +35,7 @@ pipeline {
 
     stage('Build and Push Docker Image') {
       environment {
-        DOCKER_IMAGE = "arslanzafar18/ultimate-cicd:${BUILD_NUMBER}"
+        DOCKER_IMAGE = "arslanzafar18/maven-abhishek-docker-agent:${BUILD_NUMBER}"
       }
       steps {
         script {
@@ -57,7 +57,7 @@ pipeline {
         dir('workspace') {
           withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
             sh '''
-              git config user.email "abhishek.xyz@gmail.com"
+              git config user.email "arslan.zfr18@gmail.com"
               git config user.name "Arslan Zafar"
               BUILD_NUMBER=${BUILD_NUMBER}
               sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
